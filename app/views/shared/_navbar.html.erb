@@ -1,0 +1,35 @@
+<nav class="navbar navbar-light bg-white navbar-expand-lg">
+  <div class="container-fluid">
+    <%= link_to "PuertoElige", home_index_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Questions", questions_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Answers", answers_path, class: "nav-link" %>
+        </li>
+      </ul>
+      <ul class="navbar-nav justify-content-end">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Account", edit_user_registration_path, class: "nav-link" %>
+          </li>
+          <li>
+            <%= button_to "Sign out", destroy_user_session_path, class: "nav-link bg-transparent border-0", method: :delete, data: { turbo: false } %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Get started", new_user_registration_path, role: "button", class: "btn btn-primary" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

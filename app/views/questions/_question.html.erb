@@ -1,0 +1,34 @@
+<div id="<%= dom_id question %>">
+  <div class="d-flex">
+    <strong>Question:</strong>
+    <p class="mx-2"><%= question.title %></p>
+  </div>
+  <div class="d-flex">
+    <strong>Question:</strong>
+    <p class="mx-2"><%= question.body %></p>
+  </div>
+  <div class="d-flex">
+    <strong>Status:</strong>
+    <p class="mx-2 badge <%= if question.pending?
+                               'text-bg-warning'
+                             else
+                               question.active? ? 'text-bg-success' : 'text-bg-secondary'
+                             end %>">
+      <%= question.status %>
+    </p>
+  </div>
+
+  <div class="d-flex">
+    <strong>Start At:</strong>
+    <p class="mx-2"><%= question.start_at.strftime("%d/%m/%Y") %></p>
+  </div>
+
+  <div class="d-flex">
+    <strong>End At:</strong>
+    <p class="mx-2"><%= question.end_at.strftime("%d/%m/%Y") %></p>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <%= link_to "Response", response_question_index_path(question_id: question.id), class: "btn btn-success" %>
+  </div>
+</div>

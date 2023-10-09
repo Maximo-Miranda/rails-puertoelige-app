@@ -1,0 +1,37 @@
+<%= form_with(model: answer) do |form| %>
+  <% if answer.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+
+      <ul>
+        <% answer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mt-2">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :body, class: "form-label" %>
+    <%= form.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :status, class: "form-label" %>
+    <%= form.select :status, Answer.statuses.keys, {}, class: "form-select"  %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :question_id, class: "form-label" %>
+    <%= form.select :question_id, options_for_select(@questions.map { |q| [q.title, q.id] }, answer.question_id), {}, class: "form-select" %>
+  </div>
+
+  <div class="d-flex justify-content-end mt-4">
+    <%= form.submit nil, class: "btn btn-primary" %>
+  </div>
+<% end %>

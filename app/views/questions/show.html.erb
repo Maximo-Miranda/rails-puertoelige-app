@@ -1,0 +1,15 @@
+<div class="card shadow border-0 rounded-2 mb-3">
+  <div class="card-header bg-white">
+    <div class="card-title text-center h4 mt-2">
+      <%= @question.body %>
+    </div>
+    <div class="card-body">
+      <%= render @question %>
+      <div>
+        <%= link_to "Back to questions", questions_path %> |
+        <%= link_to "Edit this question", edit_question_path(@question) %> |
+        <%= link_to "Destroy this question", @question, data: { "turbo-method": :delete } %>
+      </div>
+    </div>
+  </div>
+</div>

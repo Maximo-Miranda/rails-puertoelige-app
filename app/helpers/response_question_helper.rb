@@ -1,0 +1,2 @@
+module ResponseQuestionHelper
+end

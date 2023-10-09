@@ -1,0 +1,34 @@
+<div id="<%= dom_id answer %>">
+  <div class="d-flex">
+    <p>
+      <strong>Title:</strong>
+      <%= answer.title %>
+    </p>
+  </div>
+  <div class="d-flex">
+    <p>
+      <strong>Body:</strong>
+      <%= answer.body %>
+    </p>
+  </div>
+
+  <div class="d-flex">
+    <p>
+      <strong>Type:</strong>
+      <%= answer.answer_type %>
+    </p>
+  </div>
+  <div class="d-flex">
+    <p>
+      <strong>Status:</strong>
+      <%= answer.status %>
+    </p>
+  </div>
+
+  <div class="d-flex">
+    <p>
+      <strong>Question:</strong>
+      <%= answer.question.title %>
+    </p>
+  </div>
+</div>

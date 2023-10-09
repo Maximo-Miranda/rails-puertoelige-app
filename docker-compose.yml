@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: puertoelige-postgres
+    image: postgres:14
+    volumes:
+      - ./tmp/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    networks:
+      - puertoelige-dev-network
+  redis:
+    container_name: puertoelige-redis
+    image: 'redis:alpine'
+    ports:
+      - '6379:6379'
+    volumes:
+      - ./tmp/redis:/data
+    networks:
+      - puertoelige-dev-network
+    healthcheck:
+      test:
+        - CMD
+        - redis-cli
+        - ping
+      retries: 3
+      timeout: 5s
+networks:
+  puertoelige-dev-network:
+    driver: bridge

@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-center">
+  <h1><%= @question.body %></h1>
+</div>
+
+<div class="table-group-divider mt-4 mb-4"></div>
+
+<%= form_with(model: @response_question, url: response_question_create_path) do |form| %>
+  <%= hidden_field_tag :question_id, @question.id %>
+  <% if @response_question.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@response_question.errors.count, "error") %> prohibited this response question from being
+        saved:</h2>
+
+      <ul>
+        <% @response_question.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="d-flex justify-content-center">
+    <div id="response_questions" class="row">
+      <% @answers.in_groups_of(1, false).each do |group| %>
+        <div class="col col-md-3 mb-4">
+          <% group.each do |answer| %>
+            <% if answer %>
+                <%= render partial: 'response_question/response_question', locals: { answer: answer, form: form } %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mb-5">
+    <%= submit_tag 'Send', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<div class="d-flex justify-content-center mb-5">
+  <%= pagy_bootstrap_nav(@pagy).html_safe %>
+</div>
+
+

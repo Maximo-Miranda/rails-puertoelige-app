@@ -1,0 +1,4 @@
+<h1>ResponseQuestion#show</h1>
+<%= bar_chart ResponseQuestion.joins(:question).joins(:answer).where(question_id: @question.id).group('answers.title').count,
+              height: "500px", colors: ["green", "red", "blue", "orage", "purple", "pink", "yellow", "brown", "grey", "black"]
+%>

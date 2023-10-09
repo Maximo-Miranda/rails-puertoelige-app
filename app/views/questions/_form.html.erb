@@ -1,0 +1,47 @@
+<%= form_with(model: question) do |form| %>
+  <% if question.errors.any? %>
+    <div style="color: red">
+      <h3><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h3>
+
+      <ul>
+        <% question.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mt-2">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :body, class: "form-label" %>
+    <%= form.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :answer_type, class: "form-label" %>
+    <%= form.select :answer_type, Question.answer_types.keys, {}, class: "form-select"  %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :status, class: "form-label" %>
+    <%= form.select :status, Question.statuses.keys, {}, class: "form-control"  %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :start_at, class: "form-label" %>
+    <%= form.datetime_field :start_at, class: "form-control" %>
+  </div>
+
+  <div class="mt-2">
+    <%= form.label :end_at, class: "form-label" %>
+    <%= form.datetime_field :end_at, class: "form-control" %>
+  </div>
+
+  <div class="d-flex justify-content-end mt-4">
+    <%= form.submit "Save", class: "btn btn-primary"%>
+  </div>
+<% end %>

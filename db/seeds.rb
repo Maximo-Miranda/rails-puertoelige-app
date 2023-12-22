@@ -30,14 +30,14 @@ one_fake_question = Question.create(title: Faker::Lorem.sentence(word_count: 3),
 two_fake_question = Question.create(title: Faker::Lorem.sentence(word_count: 3), body: "¿ #{Faker::Lorem.sentence(word_count: 5)} ?", answer_type: :unique_choice, status: :active, start_at: Time.now + 1.day, end_at: Time.now + 2.day, user_id: 1)
 three_fake_question = Question.create(title: Faker::Lorem.sentence(word_count: 3), body: "¿ #{Faker::Lorem.sentence(word_count: 5)} ?", answer_type: :unique_choice, status: :active, start_at: Time.now + 1.day, end_at: Time.now + 2.day, user_id: 1)
 
-50.times do
-  Answer.create(title: Faker::Lorem.sentence(word_count: 3), body: Faker::Lorem.sentence(word_count: 5), answer_type: :unique_choice, status: :active, question_id: one_fake_question.id)
+100.times do
+  Answer.create(title: Faker::Lorem.sentence(word_count: 3), body: Faker::Lorem.sentence(word_count: 5), status: :active, question_id: one_fake_question.id)
 end
 
-101.times do
-  Answer.create(title: Faker::Lorem.sentence(word_count: 3), body: Faker::Lorem.sentence(word_count: 5), answer_type: :unique_choice, status: :active, question_id: two_fake_question.id)
+30.times do
+  Answer.create(title: Faker::Lorem.sentence(word_count: 3), body: Faker::Lorem.sentence(word_count: 5), status: :active, question_id: two_fake_question.id)
 end
 
-9.times do
-  Answer.create(title: Faker::Lorem.sentence(word_count: 3), body: Faker::Lorem.sentence(word_count: 5), answer_type: :unique_choice, status: :active, question_id: three_fake_question.id)
+40.times do
+  Answer.create(title: Faker::Lorem.sentence(word_count: 3), body: Faker::Lorem.sentence(word_count: 5), status: :active, question_id: three_fake_question.id)
 end

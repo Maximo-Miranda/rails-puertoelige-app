@@ -12,7 +12,8 @@ class ResponseQuestionController < ApplicationController
   end
 
   def show
-    @question = Question.includes(:response_questions).find(params[:question_id])
+    @question = ActiveRecord::Base.connection.query("select distinct a.body AS answer, COUNT(rq.answer_id) as quantity from questions q join answers a on  q.id = a.question_id left join response_questions rq  on  a.id = rq.answer_id where q.id = #{params[:question_id]} group by a.body ,  rq.answer_id")
+    #@question = Question.includes(:response_questions).find(params[:question_id])
   end
 
   def create
